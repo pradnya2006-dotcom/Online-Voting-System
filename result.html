@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results - Online Voting System</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #004680;
+      --accent: #007bff;
+      --bg-blue: #0084ff;
+      --text-dark: #333;
+      --text-light: #fff;
+      --input-bg: #f3f4f6;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0056b3;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .main-container {
+      background: white;
+      width: 1000px;
+      height: 650px;
+      border-radius: 30px;
+      display: flex;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left Branding Side */
+    .branding {
+      flex: 1;
+      background: var(--bg-blue);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      color: white;
+      overflow: hidden;
+    }
+
+    .branding h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .branding h2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 10px 0 20px;
+      opacity: 0.9;
+    }
+
+    /* Right Side */
+    .result-side {
+      flex: 1.2;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: white;
+    }
+
+    .result-side h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--text-dark);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th,
+    td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    td {
+      color: var(--text-dark);
+      font-size: 16px;
+    }
+
+    tr:hover td {
+      background: #f1f5f9;
+    }
+
+    .back-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #003366;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <style>
+    /* Language Switcher Style */
+    .lang-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: white;
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      background: transparent;
+      color: var(--text-dark);
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+  </style>
+
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="switchLang('en')" id="enBtn">EN</button>
+    <button class="lang-btn" onclick="switchLang('mr')" id="mrBtn">MR</button>
+  </div>
+
+  <div class="main-container">
+    <div class="branding">
+      <h1 data-i18n="results">RESULTS</h1>
+      <h2 data-i18n="summary">ELECTION SUMMARY</h2>
+      <p data-i18n="result-desc">Real-time results of the ongoing election. We ensure every vote is counted accurately
+        and transparently.</p>
+    </div>
+
+    <div class="result-side">
+      <h2 data-i18n="standings">Current Standings</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="cand-head">Candidate</th>
+            <th data-i18n="vote-head">Votes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Candidate 1</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>Candidate 2</td>
+            <td>95</td>
+          </tr>
+          <tr>
+            <td>Candidate 3</td>
+            <td>60</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="dashboard.html" class="back-btn" data-i18n="back">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        results: "RESULTS",
+        summary: "ELECTION SUMMARY",
+        "result-desc": "Real-time results of the ongoing election. We ensure every vote is counted accurately and transparently.",
+        standings: "Current Standings",
+        "cand-head": "Candidate",
+        "vote-head": "Votes",
+        back: "Back to Dashboard"
+      },
+      mr: {
+        results: "निकाल",
+        summary: "निवडणूक सारांश",
+        "result-desc": "निवडणुकीचे रिअल-टाइम निकाल. आम्ही प्रत्येक मत अचूकपणे मोजले जाईल याची खात्री देतो.",
+        standings: "सध्याची स्थिती",
+        "cand-head": "उमेदवार",
+        "vote-head": "मते",
+        back: "डॅशबोर्डवर परत जा"
+      }
+    };
+
+    function switchLang(lang) {
+      localStorage.setItem('voterLang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.innerText = translations[lang][key];
+      });
+      document.getElementById('enBtn').classList.toggle('active', lang === 'en');
+      document.getElementById('mrBtn').classList.toggle('active', lang === 'mr');
+    }
+
+    window.onload = async () => {
+      const savedLang = localStorage.getItem('voterLang') || 'en';
+      switchLang(savedLang);
+
+      try {
+        const response = await fetch('http://localhost:3000/api/results');
+        const candidates = await response.json();
+
+        const tbody = document.querySelector('tbody');
+        tbody.innerHTML = ''; // Clear existing static rows
+
+        candidates.forEach(cand => {
+          const row = `
+            <tr>
+              <td>${cand.name}</td>
+              <td>${cand.votes}</td>
+            </tr>
+          `;
+          tbody.innerHTML += row;
+        });
+      } catch (err) {
+        console.error(err);
+        alert("Error fetching live results. Showing static data.");
+      }
+    };
+  </script>
+</body>
+
+</html>
