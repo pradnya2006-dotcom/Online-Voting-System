@@ -1,0 +1,5 @@
+# Serve the login page at the site root (there is no index.html)
+[[redirects]]
+  from = "/"
+  to = "/login.html"
+  status = 200
